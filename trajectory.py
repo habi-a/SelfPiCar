@@ -8,8 +8,8 @@ import numpy as np
 def detect_edges(frame):
     # filter for blue lane lines
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_blue = np.array([60, 40, 40])
-    upper_blue = np.array([150, 255, 255])
+    lower_blue = np.array([0, 0, 0])
+    upper_blue = np.array([0, 0, 255])
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
     # detect edges
     edges = cv2.Canny(mask, 200, 400)
@@ -20,8 +20,8 @@ def region_of_interest(edges):
     mask = np.zeros_like(edges)
     # only focus bottom half of the screen
     polygon = np.array([[
-        (0, height * 1 / 2),
-        (width, height * 1 / 2),
+        (0, height * 1 / 8),
+        (width, height * 1 / 8),
         (width, height),
         (0, height),
     ]], np.int32)
