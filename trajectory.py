@@ -6,11 +6,13 @@ import math
 import numpy as np
 
 def detect_edges(frame):
-    # filter for blue lane lines
+    # filter for white lane lines
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_blue = np.array([0, 0, 0])
-    upper_blue = np.array([0, 0, 255])
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    sensitivity = 110
+    lower_white = np.array([0, 0, 255 - sensitivity])
+    upper_white = np.array([255, sensitivity, 255])
+    mask = cv2.inRange(hsv, lower_white, upper_white)
+    
     # detect edges
     edges = cv2.Canny(mask, 200, 400)
     return edges
