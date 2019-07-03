@@ -49,6 +49,11 @@ def moveForward():
 def turn(angle_in_degree):
     car_dir.turn(angle_in_degree)
 
+def turnRight():
+    car_dir.turn_right()
+
+def turnLeft():
+    car_dir.turn_left()
 
 # Stop car modules
 def stop():
