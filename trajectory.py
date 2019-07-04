@@ -5,7 +5,7 @@ import numpy as np
 
 def direction_to_take(frame):
     ## Crop the image
-    crop_img = frame[60:120, 0:160]
+    crop_img = frame [0:60, 0:160]
 
     ## Convert to grayscale
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -30,13 +30,16 @@ def direction_to_take(frame):
             cv2.line(crop_img,(cx,0),(cx,720),(255,0,0),1)
             cv2.line(crop_img,(0,cy),(1280,cy),(255,0,0),1)
             cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
+        else:
+            return 3
+
         cv2.imshow('frame',crop_img)
 
         if cx >= 120:
-            return 1
+            return 2
         if cx < 120 and cx > 50:
             return 0
         if cx <= 50:
-            return 2
+            return 1
     else:
         return 3
