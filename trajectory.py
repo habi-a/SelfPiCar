@@ -27,9 +27,10 @@ def direction_to_take(frame):
         if (M['m00'] != 0):
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
-        cv2.line(crop_img,(cx,0),(cx,720),(255,0,0),1)
-        cv2.line(crop_img,(0,cy),(1280,cy),(255,0,0),1)
-        cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
+            cv2.line(crop_img,(cx,0),(cx,720),(255,0,0),1)
+            cv2.line(crop_img,(0,cy),(1280,cy),(255,0,0),1)
+            cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
+        cv2.imshow('frame',crop_img)
 
         if cx >= 120:
             return 1

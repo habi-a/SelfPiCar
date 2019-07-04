@@ -14,7 +14,7 @@ API_ENDPOINT = '/tournament/submitTime'
 data = {"user_id": 1, "tournament_id": 1, "time": 0, "point": 0}
 
 # Enable Car modules
-car.init(40)
+car.init(20)
 
 # Enable camera stream
 camera = cv2.VideoCapture(-1)
@@ -64,6 +64,6 @@ cv2.destroyAllWindows()
 
 # Send chronos to the server
 for chrono in chronos:
-    data.time = chrono
+    data["time"] = chrono
     print "[HTTP] Sending data..."
     resp = requests.post(SERVER_URL + API_ENDPOINT, data = data)
