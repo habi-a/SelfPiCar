@@ -9,7 +9,7 @@ import time
 import trajectory
 
 # HTTP Request info (To submit chronos)
-SERVER_URL = 'http://35.193.192.104:80'
+SERVER_URL = 'http://35.193.192.104'
 API_ENDPOINT = '/tournament/submitTime'
 data = {"user_id": 1, "tournament_id": 1, "time": 0, "point": 0}
 
@@ -37,13 +37,13 @@ while (camera.isOpened() and laps_remaining > 0):
     _, frame = camera.read()
 
     ## If Finish is raised
-#    if finish.detect_finish(frame):
-#        finish_seen = True
-#    elif finish_seen:
-#        finish_seen = False
-#        laps_remaining -= 1
-#        chronos.append(time.time() - start)
-#        start = time.time()
+    if finish.detect_finish(frame):
+        finish_seen = True
+    elif finish_seen:
+        finish_seen = False
+        laps_remaining -= 1
+        chronos.append(time.time() - start)
+        start = time.time()
 
     direction = trajectory.direction_to_take(frame)
 
